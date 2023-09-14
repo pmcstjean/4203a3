@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<title>Redirection vers Glossaire</title>
+</head>
+<body>
+    Si vous n'êtes pas automatiquement redirigé, <a href="">cliquez ici</a>.
+</body>
+</html>
+
+<script>
+window.onload = function() {
+  // Get the full query string including the leading "?"
+  var queryString = window.location.search;
+
+  // Remove the leading "?" to work with individual parameters
+  queryString = queryString.substring(1);
+
+  // Split the query string into an array of key-value pairs
+  var queryParams = queryString.split("&");
+
+  // Create an object to store the parsed parameters
+  var params = {};
+
+  // Loop through the key-value pairs and store them in the object
+  for (var i = 0; i < queryParams.length; i++) {
+    var pair = queryParams[i].split("=");
+    var key = decodeURIComponent(pair[0]);
+    var value = decodeURIComponent(pair[1] || "");
+    params[key] = value;
+  }
+
+  //alert(queryString);
+  // Construct the destination URL with the received query parameters
+  var destinationURL = "https://cstjean.moodle.decclic.qc.ca/mod/glossary/view.php?id=55730&" + queryString;
+  //for (var key in params) {
+  //  if (params.hasOwnProperty(key)) {
+  //    destinationURL += "&" + encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
+  //  }
+  //}
+
+  //alert(destinationURL);
+  //alert(destinationURL);
+  // Redirect to the constructed URL
+  window.location.href = destinationURL;
+};
+</script>
